@@ -12,15 +12,15 @@ const c = new Counter({
 
 
 app.get('/', (req, res) => {
-    c.inc({ code: 200 });
-    c.inc({ client: 'ios' });
+    const client = Math.random() > 0.5 ? 'mozilla' : 'chrome';
+    const code = Math.random() > 0.5 ? 200 : 400;
+    c.inc({ code, client });
     res.send('Hello World!')
 })
 
 
 app.get('/bad', (req, res) => {
-    c.inc({ code: 404 });
-    c.inc({ client: 'mozilla' });
+    c.inc({ code: 404, client: 'mozilla' });
     res.send('Hello World!')
 })
 
